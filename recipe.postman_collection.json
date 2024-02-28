@@ -31,6 +31,55 @@
 				"method": "GET",
 				"header": [],
 				"url": {
+					"raw": "http://localhost:3000/recipes/detail?search=&searchBy=title&sortBy=created_at&sort=ASC&limit=3&page=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"recipes",
+						"detail"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": ""
+						},
+						{
+							"key": "searchBy",
+							"value": "title",
+							"description": "title | ingredient"
+						},
+						{
+							"key": "sortBy",
+							"value": "created_at",
+							"description": "created_at | updated_at"
+						},
+						{
+							"key": "sort",
+							"value": "ASC",
+							"description": "ASC | DESC"
+						},
+						{
+							"key": "limit",
+							"value": "3"
+						},
+						{
+							"key": "page",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Recipe By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
 					"raw": "http://localhost:3000/recipes/1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed",
 					"protocol": "http",
 					"host": [

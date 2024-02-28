@@ -1,5 +1,33 @@
 const Pool = require("../config/db")
 
+const getRecipeDetailModel = async (data) => {
+	let {searchBy,search,sortBy,sort,limit,offset} = data
+	console.log("model - getRecipeDetailModel")
+	return new Promise((resolve,reject)=>
+		Pool.query(`SELECT * FROM recipes WHERE ${searchBy} ILIKE '%${search}%' ORDER BY ${sortBy} ${sort} LIMIT ${limit} OFFSET ${offset}`,(err,res)=>{
+			if(!err){
+				return resolve(res)
+			} else {
+				console.log(`error db -`,err)
+				reject(err)
+			}
+		})
+	)
+}
+const getRecipeDetailCountModel = async (data) => {
+	let {searchBy,search} = data
+	console.log("model - getRecipeDetailCountModel")
+	return new Promise((resolve,reject)=>
+		Pool.query(`SELECT * FROM recipes WHERE ${searchBy} ILIKE '%${search}%'`,(err,res)=>{
+			if(!err){
+				return resolve(res)
+			} else {
+				console.log(`error db -`,err)
+				reject(err)
+			}
+		})
+	)
+}
 const getRecipesModel = async () => {
 	console.log("model - getRecipesModel")
 	return new Promise((resolve,reject)=>
@@ -59,4 +87,4 @@ const updateRecipe = async (data) => {
 	)
 }
 
-module.exports = {getRecipesModel,getRecipeByIdModel,createRecipe,updateRecipe}
+module.exports = {getRecipesModel,getRecipeByIdModel,createRecipe,updateRecipe,getRecipeDetailModel,getRecipeDetailCountModel}

@@ -1,12 +1,85 @@
 const { v4: uuidv4 } = require("uuid");
 const {
+	getRecipeDetailModel,
+	getRecipeDetailCountModel,
     getRecipesModel,
     getRecipeByIdModel,
     createRecipe,
     updateRecipe,
 } = require("../model/recipes");
+const { search } = require("../router");
 
 const RecipesController = {
+    getRecipeDetail: async (req, res, next) => {
+        try {
+			// check searchBy
+			let searchBy
+			if(req.query.searchBy === ""){
+				if(req.query.searchBy === "title" ||  req.query.searchBy === "ingredient"){
+					searchBy = req.query.searchBy
+				} else {
+					searchBy = "title"
+				}
+			} else{
+				searchBy = "title"
+			}
+			// check sortBy
+			let sortBy
+			if(req.query.sortBy === ""){
+				if(req.query.sortBy === "created_at" ||  req.query.sortBy === "updated_at"){
+					sortBy = req.query.sortBy
+				} else {
+					sortBy = "created_at"
+				}
+			} else{
+				sortBy = "created_at"
+			}
+			// check sort
+			let sort
+			if(req.query.sort === ""){
+				if(req.query.sort === "ASC" ||  req.query.sort === "DESC"){
+					sort = req.query.sort
+				} else {
+					sort = "ASC"
+				}
+			} else{
+				sort = "ASC"
+			}
+			let search = req.query.search || ""
+			let limit = req.query.limit || 3
+			let offset = ((req.query.page || 1) - 1) * parseInt(limit)
+
+			let data = {searchBy,search,sortBy,sort,limit,offset}
+
+            let recipes = await getRecipeDetailModel(data);
+            let count = await getRecipeDetailCountModel(data);
+			let total = count.rowCount
+            let result = recipes.rows;
+			let page_next
+			if(req.query.page == Math.round(total/parseInt(limit))){
+				page_next = 0
+			} else {
+				page_next = parseInt(req.query.page) + 1
+			}
+			
+			let pagination = {
+				page_total : Math.round(total/parseInt(limit)),
+				page_prev: parseInt(req.query.page) - 1,
+				page_next,
+				total_data : total
+			}
+            
+            return res
+                .status(200)
+                .json({ message: "success getRecipeDetail", data: result ,pagination});
+        } catch (err) {
+            console.log("getRecip error");
+            console.log(err);
+            return res
+                .status(404)
+                .json({ message: "failed getRecipeDetail Controller" });
+        }
+    },
     getRecipe: async (req, res, next) => {
         try {
             let recipes = await getRecipesModel();
