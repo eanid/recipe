@@ -7,39 +7,39 @@
 	},
 	"item": [
 		{
-			"name": "Users",
+			"name": "Recipe",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/users",
+					"raw": "http://localhost:3000/recipes",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"users"
+						"recipes"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Users Detail",
+			"name": "Recipe Detail",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/users/1",
+					"raw": "http://localhost:3000/recipes/1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"users",
-						"1"
+						"recipes",
+						"1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed"
 					]
 				}
 			},
@@ -66,7 +66,7 @@
 			"response": []
 		},
 		{
-			"name": "Users Create",
+			"name": "Recipes Create",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -74,28 +74,38 @@
 					"mode": "urlencoded",
 					"urlencoded": [
 						{
-							"key": "name",
-							"value": "fani",
+							"key": "title",
+							"value": "fried rice",
+							"type": "text"
+						},
+						{
+							"key": "ingredient",
+							"value": "rice, sauce, salt, egg",
+							"type": "text"
+						},
+						{
+							"key": "photo",
+							"value": "https://placehold.co/600x400",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://localhost:3000/users",
+					"raw": "http://localhost:3000/recipes",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"users"
+						"recipes"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Users Update",
+			"name": "Recipes Update",
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -103,22 +113,34 @@
 					"mode": "urlencoded",
 					"urlencoded": [
 						{
-							"key": "name",
-							"value": "cecil",
+							"key": "title",
+							"value": "fried rice special meat",
 							"type": "text"
+						},
+						{
+							"key": "ingredient",
+							"value": "rice, sauce, salt, egg, meat",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "photo",
+							"value": "https://placehold.co/600x600",
+							"type": "text",
+							"disabled": true
 						}
 					]
 				},
 				"url": {
-					"raw": "http://localhost:3000/users/2",
+					"raw": "http://localhost:3000/recipes/3632b355-2a11-41fe-b874-092b8f75ab20",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"users",
-						"2"
+						"recipes",
+						"3632b355-2a11-41fe-b874-092b8f75ab20"
 					]
 				}
 			},
