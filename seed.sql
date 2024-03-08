@@ -142,3 +142,11 @@ VALUES (
     );
 
 -- finish binding 3 table
+SELECT * FROM users WHERE email='adi@gmail.com';
+INSERT INTO
+    users (
+        id, email, password, created_at
+    )
+VALUES (
+        '1bd6bc-bfd-4b2-9b5d', 'adi@gmail.com', '12345678', NOW()
+    );
