@@ -44,7 +44,7 @@ const getRecipesModel = async () => {
 const getRecipeByIdModel = async (id) => {
 	console.log("model - getRecipeByIdModel")
 	return new Promise((resolve,reject)=>
-		Pool.query(`SELECT recipes.id,recipes.title,recipes.ingredient,recipes.photo,recipes.created_at,recipes.updated_at,category.name as category, users.email as author FROM recipes JOIN category ON recipes.category_id=category_id JOIN users ON recipes.users_id=users.id WHERE recipes.id='${id}'`,(err,res)=>{
+		Pool.query(`SELECT recipes.id,recipes.title,recipes.ingredient,recipes.photo,recipes.created_at,recipes.updated_at,recipes.category_id,category.name as category,recipes.users_id, users.email as author FROM recipes JOIN category ON recipes.category_id=category_id JOIN users ON recipes.users_id=users.id WHERE recipes.id='${id}'`,(err,res)=>{
 			if(!err){
 				return resolve(res)
 			} else {
