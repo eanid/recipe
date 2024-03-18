@@ -150,3 +150,9 @@ INSERT INTO
 VALUES (
         '1bd6bc-bfd-4b2-9b5d', 'adi@gmail.com', '12345678', NOW()
     );
+
+-- email users
+
+ALTER TABLE users ADD COLUMN name VARCHAR;
+ALTER TABLE users ADD COLUMN is_verif BOOLEAN DEFAULT false;
+ALTER TABLE users ADD COLUMN otp VARCHAR;
