@@ -94,7 +94,7 @@ const UserController = {
 
         return res
             .status(201)
-            .json({ status: 201, messages: "login success", token });
+            .json({ status: 201, messages: "login success", token, data: userData });
     },
     verification: async (req, res, next) => {
         let { id, otp } = req.params;

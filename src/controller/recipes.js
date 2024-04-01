@@ -133,7 +133,7 @@ const RecipesController = {
         try {
             let { title, ingredient, photo, category_id } = req.body;
             if (!req.payload) {
-                return res.json({
+                return res.status(404).json({
                     code: 404,
                     message: "server need token, please login",
                 });
@@ -145,16 +145,16 @@ const RecipesController = {
                 ingredient === "" ||
                 !category_id
             ) {
-                return res.json({ code: 404, message: "input invalid" });
+                return res.status(404).json({ code: 404, message: "input invalid" });
             }
             // upload photo
             console.log("photo");
             console.log(req.file);
             if (!req.file) {
-                return res.json({ code: 404, message: "photo required" });
+                return res.status(404).json({ code: 404, message: "photo required" });
             }
             if (!req.isFileValid) {
-                return res.json({ code: 404, message: req.isFileValidMessage });
+                return res.status(404).json({ code: 404, message: req.isFileValidMessage });
             }
 
             const imageUpload = await cloudinary.uploader.upload(
@@ -167,7 +167,7 @@ const RecipesController = {
             console.log(imageUpload);
 
             if (!imageUpload) {
-                return res.json({ code: 404, message: "upload photo failed" });
+                return res.status(404).json({ code: 404, message: "upload photo failed" });
             }
 
             let data = {
@@ -185,8 +185,8 @@ const RecipesController = {
                     .json({ code: 201, message: "success input data" });
             }
             return res
-                .status(401)
-                .json({ code: 401, message: "failed input data" });
+                .status(404)
+                .json({ code: 404, message: "failed input data" });
         } catch (err) {
             console.log("InputRecipe error");
             console.log(err);
