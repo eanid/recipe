@@ -7,8 +7,9 @@ const app = express();
 const port = 3000;
 
 const corsOption = {
-	origin : '*',
-	optionSuccessStatus:200
+	origin: "*",
+	credentials: true,
+	optionSuccessStatus: 200,
 }
 
 app.use(cors(corsOption))
